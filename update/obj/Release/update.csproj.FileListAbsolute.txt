@@ -1,6 +1,0 @@
-E:\WorkSpace\CSharp\update\Win32\readme.txt
-E:\WorkSpace\CSharp\update\Win32\update.exe.bat
-E:\WorkSpace\CSharp\update\Win32\update.exe.config
-E:\WorkSpace\CSharp\update\Win32\update.exe
-E:\WorkSpace\CSharp\update\update\obj\Release\ResolveAssemblyReference.cache
-E:\WorkSpace\CSharp\update\update\obj\Release\update.exe

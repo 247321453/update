@@ -1,8 +1,0 @@
-E:\WorkSpace\CSharp\update\update\obj\Debug\ResolveAssemblyReference.cache
-E:\WorkSpace\CSharp\update\update\bin\Debug\update.exe.config
-E:\WorkSpace\CSharp\update\update\bin\Debug\update.exe
-E:\WorkSpace\CSharp\update\update\bin\Debug\update.pdb
-E:\WorkSpace\CSharp\update\update\obj\Debug\update.exe
-E:\WorkSpace\CSharp\update\update\obj\Debug\update.pdb
-E:\WorkSpace\CSharp\update\update\bin\Debug\readme.txt
-E:\WorkSpace\CSharp\update\update\bin\Debug\update.exe.bat

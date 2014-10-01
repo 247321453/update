@@ -229,8 +229,10 @@ namespace update
 			
 			//filelist
 			Update();
-			File.Delete(f_version);
-			File.Move(f_version_new,f_version);
+			if(File.Exists(f_version_new)){
+				File.Delete(f_version);
+				File.Move(f_version_new,f_version);
+			}
 			Console.WriteLine("更新完成。。。");
 		}
 	}

@@ -51,7 +51,7 @@ namespace update
 			Console.WriteLine("更新开始。。。");
 			list=new List<fileinfo>();
 			AddDir(_wPath);//当前目录所有文件
-			MyUtil.saveText(f_version,DateTime.UtcNow.ToShortDateString());
+			MyUtil.saveText(f_version,DateTime.UtcNow.ToString());
 			MyUtil.saveText(f_rename,"# 重命名列表 (编码为UTF-8，用tab键隔开，采用相对路径)"
 			               +Environment.NewLine
 			               +"# 例如：前面改名为后面。"

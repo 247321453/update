@@ -224,12 +224,12 @@ namespace update
 					Console.WriteLine("已经是最新。");
 					return;
 				}
+				//删除旧文件
+				Delete();
+				//重命名文件
+				Rename();
 			}
-			//删除旧文件
-			Delete();
-			//重命名文件
-			Rename();
-			
+
 			//filelist
 			Update();
 			if(File.Exists(f_version_new)){

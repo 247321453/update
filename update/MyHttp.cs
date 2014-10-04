@@ -19,7 +19,7 @@ namespace update
 	public class MyHttp
 	{
 		public static int NUM=0;
-		public static int MAX_NUM=0x20;
+		public static int MAX_NUM=0x10;
 		private string _url,_filename;
 		private static int NTASK=0;
 		private static int TASK=0;
@@ -52,6 +52,9 @@ namespace update
 			if(!MyHttp.DownLoad(_url,_filename)){
 				//下载失败
 				errorlist.Add(_ff);
+			}else{
+				if(!File.Exists(_filename))
+					errorlist.Add(_ff);
 			}
 			NTASK++;
 			NUM--;
@@ -71,7 +74,7 @@ namespace update
 				else
 					MyUtil.createDir(filename);
 				HttpWebRequest Myrq = (HttpWebRequest)System.Net.HttpWebRequest.Create(url);
-				Myrq.Timeout = 30000;
+				Myrq.Timeout = 60000;
 				//Myrq.UserAgent="Mozilla/5.0 (Windows NT 6.2; WOW64) "
 				//	+"AppleWebKit/537.36 (KHTML, like Gecko) "
 				//	+"Chrome/27.0.1453.94 Safari/537.36";
@@ -102,7 +105,7 @@ namespace update
 			{
 				isOK= false;
 			}
-			isOK=true;
+			isOK=File.Exists(filename);
 			return isOK;
 		}
 		

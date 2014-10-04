@@ -201,8 +201,9 @@ namespace update
 					}
 				}
 			}
+			Console.WriteLine("等待所有文件下载完成。。。");
 			while(!MyHttp.isOK()){
-				Console.WriteLine("等待所有文件下载完成。。。");
+				
 			}
 			if(MyHttp.errorlist.Count>0){
 				Console.WriteLine("部分文件下载失败。。。");
@@ -213,14 +214,16 @@ namespace update
 		public void Run(){
 			Console.WriteLine("游戏路径为："+_wPath);
 			Console.WriteLine("开始更新。。。");
-			//version
-			MyHttp.DownLoad(url_version, f_version_new);
-			//版本号一致
-			string md5_1=MyUtil.MD5_File(f_version);
-			string md5_2=MyUtil.MD5_File(f_version_new);
-			if(md5_1 == md5_2 && md5_1.Length>0){
-				Console.WriteLine("已经是最新。");
-				return;
+			if(!File.Exists(f_error)){
+				//version
+				MyHttp.DownLoad(url_version, f_version_new);
+				//版本号一致
+				string md5_1=MyUtil.MD5_File(f_version);
+				string md5_2=MyUtil.MD5_File(f_version_new);
+				if(md5_1 == md5_2 && md5_1.Length>0){
+					Console.WriteLine("已经是最新。");
+					return;
+				}
 			}
 			//删除旧文件
 			Delete();

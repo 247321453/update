@@ -71,8 +71,8 @@ namespace update
 			string[] dirs=Directory.GetDirectories(dir);
 			
 			foreach(string d in dirs){
-				
-				AddDir(d);//添加子目录的所有文件
+				if(!d.EndsWith(Path.DirectorySeparatorChar+".git",StringComparison.OrdinalIgnoreCase))
+					AddDir(d);//添加子目录的所有文件
 			}
 		}
 		void AddFile(string file){
@@ -83,6 +83,7 @@ namespace update
 			  || file == Assembly.GetExecutingAssembly().Location+".bat"
 			  || "Thumbs.db".Equals(Path.GetFileName(file)
 			                        ,StringComparison.OrdinalIgnoreCase)
+			  || file.EndsWith(".gitignore",StringComparison.OrdinalIgnoreCase)
 			  )
 				return;
 			string name=file.Replace(_wPath,"");

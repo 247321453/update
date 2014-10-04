@@ -13,6 +13,7 @@ namespace update
 	{
 		public static void Main(string[] args)
 		{
+			MyHttp.init(0x10);
 			if(args.Length>0){
 				switch(args[0]){
 					case "-m":

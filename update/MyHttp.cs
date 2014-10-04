@@ -28,6 +28,12 @@ namespace update
 		private static string proxyip;
 		private static int proxyport;
 		public static List<fileinfo> errorlist=new List<fileinfo>();
+		
+		public static void init(int max){
+			ServicePointManager.DefaultConnectionLimit=max;
+			MAX_NUM=max;
+		}
+		
 		public MyHttp(string url, string filename, fileinfo ff){
 			this._url=url;
 			this._filename=filename;
@@ -74,7 +80,7 @@ namespace update
 				else
 					MyUtil.createDir(filename);
 				HttpWebRequest Myrq = (HttpWebRequest)System.Net.HttpWebRequest.Create(url);
-				Myrq.Timeout = 60000;
+				Myrq.Timeout = 30000;
 				//Myrq.UserAgent="Mozilla/5.0 (Windows NT 6.2; WOW64) "
 				//	+"AppleWebKit/537.36 (KHTML, like Gecko) "
 				//	+"Chrome/27.0.1453.94 Safari/537.36";

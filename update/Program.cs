@@ -13,15 +13,16 @@ namespace update
 	{
 		public static void Main(string[] args)
 		{
-			Client client=new Client(args);
-			Server server=new Server(args);
-			
 			if(args.Length>0){
 				switch(args[0]){
-						case "-m":server.Run();break;
+					case "-m":
+						Server server=new Server(args);
+						server.Run();
+						break;
 				}
 				return;
 			}else{
+				Client client=new Client(args);
 				client.Run();
 			}
 			Console.Write("按任意键继续 . . . ");

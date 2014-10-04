@@ -29,7 +29,7 @@ namespace update
 			if(args == null || args.Length < 2 ){
 				_wPath=AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
 				DirectoryInfo dirinfo=new DirectoryInfo(_wPath);
-				string tmp=dirinfo.Parent.FullName;
+				string tmp=(dirinfo.Parent!=null)?dirinfo.Parent.FullName:"";
 				if(!string.IsNullOrEmpty(tmp))
 					_wPath=tmp;//上一级目录
 			}

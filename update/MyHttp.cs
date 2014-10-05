@@ -27,51 +27,60 @@ namespace update
 		private static bool isProxy=false;
 		private static string proxyip;
 		private static int proxyport;
-		public static List<fileinfo> errorlist=new List<fileinfo>();
-		
-		public static void init(int max){
-			ServicePointManager.DefaultConnectionLimit=max;
-			MAX_NUM=max;
-		}
+		private static MyHttpListener myhttplistiner=null;
 		
 		public MyHttp(string url, string filename, fileinfo ff){
 			this._url=url;
 			this._filename=filename;
 			this._ff=ff;
 		}
-		public static void setProxy(bool isuse,string ip){
-			isProxy=isuse;
-			string[] strs=ip.Split(':');
-			proxyip=strs[0];
-			int.TryParse(strs[1],out proxyport);
-		}
+		
 		public void Start(){
 			Thread thread=new Thread(Download);
 			thread.IsBackground=true;
 			thread.Start();
 		}
+		
 		public void Download(){
 			if(MyHttp.NUM>=MyHttp.MAX_NUM)
 				return;
 			NUM++;
 			TASK++;
-			if(!MyHttp.DownLoad(_url,_filename)){
-				//下载失败
-				errorlist.Add(_ff);
-			}else{
-				if(!File.Exists(_filename))
-					errorlist.Add(_ff);
-			}
+			MyHttp.DownLoad(_url,_filename,_ff);
 			NTASK++;
 			NUM--;
 		}
+		
+		public static void SetListner(MyHttpListener listiner){
+			myhttplistiner=listiner;
+		}
+		
+		public static void init(int max){
+			ServicePointManager.DefaultConnectionLimit=max;
+			MAX_NUM=max;
+		}
+		
+		public static void setProxy(bool isuse,string ip,int port){
+			isProxy=isuse;
+			proxyip=ip;
+			proxyport=port;
+		}
+		
 		public static bool isOK(){
 			return (NTASK==TASK);
 		}
-
 		
+		public static int GetTask(){
+			return TASK-NTASK;
+		}
 		public static bool DownLoad(string url,string filename)
 		{
+			return DownLoad(url,filename,null);
+		}
+		public static bool DownLoad(string url,string filename,fileinfo ff)
+		{
+			if(myhttplistiner!=null)
+				myhttplistiner.OnStart(url, filename);
 			bool isOK=false;
 			try
 			{
@@ -112,6 +121,8 @@ namespace update
 				isOK= false;
 			}
 			isOK=File.Exists(filename);
+			if(myhttplistiner!=null)
+				myhttplistiner.OnEnd(ff, isOK);
 			return isOK;
 		}
 		

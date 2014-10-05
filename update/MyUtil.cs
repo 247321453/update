@@ -10,6 +10,7 @@ using System.IO;
 using System.Text;
 using System.Net;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace update
 {
@@ -18,7 +19,7 @@ namespace update
 	/// </summary>
 	public class MyUtil
 	{
-				#region 获取网址内容
+		#region 获取网址内容
 		public static string GetHtmlContentByUrl(string url)
 		{
 			string htmlContent = string.Empty;
@@ -50,6 +51,8 @@ namespace update
 			return "";
 		}
 		#endregion
+		
+		#region MD5校验
 		/// <summary>
 		/// 计算文件的MD5校验
 		/// </summary>
@@ -78,7 +81,7 @@ namespace update
 				throw new Exception("GetMD5HashFromFile() fail,error:" + ex.Message);
 			}
 		}
-		
+		#endregion
 		
 		public static void createDir(string filename){
 			int index=filename.LastIndexOf(Path.DirectorySeparatorChar);
@@ -87,7 +90,15 @@ namespace update
 				Directory.CreateDirectory(path);
 			}
 		}
-		
+		public static bool checkList(string[] iglist,string str){
+			if(iglist == null)
+				return false;
+			foreach(string tmp in iglist){
+				if(Regex.IsMatch(str,"^"+tmp+"$",RegexOptions.IgnoreCase))
+					return true;
+			}
+			return false;
+		}
 		public static void saveText(string file,string str){
 			if(File.Exists(file))
 				File.Delete(file);
@@ -95,9 +106,7 @@ namespace update
 				MyUtil.createDir(file);
 			File.WriteAllText(file,str,Encoding.UTF8);
 		}
-		public static string GetPath(string path,string name){
-			return Path.Combine(path, name.Replace('/',Path.DirectorySeparatorChar));
-		}
+
 		public static void saveList(string file,fileinfo[] fileinfos){
 			if(File.Exists(file))
 				File.Delete(file);

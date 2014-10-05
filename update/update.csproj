@@ -50,8 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="fileinfo.cs" />
     <Compile Include="MyHttp.cs" />
+    <Compile Include="MyHttpListener.cs" />
     <Compile Include="MyUtil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

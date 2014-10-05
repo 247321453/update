@@ -78,7 +78,8 @@ namespace update
 		}
 		
 		public void OnEnd(fileinfo ff,bool isOK){
-			showProcess(num++,all_num);
+			if(all_num>0)
+				showProcess(num++,all_num);
 			if(!isOK){
 				if(ff!=null){
 					Console.WriteLine("下载失败:"+Config.GetUrl(ff.name));

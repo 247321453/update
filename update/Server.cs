@@ -37,7 +37,7 @@ namespace update
 			                +Environment.NewLine
 			                +"# pics/123456.jpg	pics/456789.jpg");
 			//删除列表
-			MyUtil.saveText(Config.renameFile,"#删除列表 (编码为UTF-8，采用相对路径)");
+			MyUtil.saveText(Config.deleteFile,"# 删除列表 (编码为UTF-8，采用相对路径)");
 			//文件列表
 			MyUtil.saveList(Config.filelistFile, list.ToArray());//文件列表
 			Console.WriteLine("文件列表更新完成。。。");

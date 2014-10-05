@@ -29,7 +29,7 @@ namespace update
 			list.Clear();
 			AddDir(Config.workPath);//当前目录所有文件
 			//版本
-			MyUtil.saveText(Config.versionFile, DateTime.UtcNow.ToString());
+			MyUtil.saveText(Config.versionFile, DateTime.Now.ToString());
 			//重命名列表
 			MyUtil.saveText(Config.renameFile,"# 重命名列表 (编码为UTF-8，用tab键隔开，采用相对路径)"
 			                +Environment.NewLine

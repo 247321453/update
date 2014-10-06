@@ -104,11 +104,13 @@ namespace update
 			if(File.Exists(file)){
 				if(md5==MyUtil.MD5_File(file)){//一致
 					Console.WriteLine("无须下载："+name);
+					showProcess(num++,all_num);
 					return true;
 				}
 				else{
 					if(MyUtil.checkList(Config.ignores,name)){//忽略更新
 						Console.WriteLine("忽略更新："+name);
+						showProcess(num++,all_num);
 						return true;
 					}
 				}

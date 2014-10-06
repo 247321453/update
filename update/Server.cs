@@ -58,8 +58,12 @@ namespace update
 			}
 		}
 		void AddFile(string file){
-			if(file.EndsWith("Thumbs.db",StringComparison.OrdinalIgnoreCase)
-			   || file.EndsWith(".gitignore",StringComparison.OrdinalIgnoreCase)
+			string filename =Path.GetFileName(file);
+			string exename = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+			if(filename.EndsWith("Thumbs.db",StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith(".gitignore",StringComparison.OrdinalIgnoreCase)
+			   || file == exename
+			   || file == exename+".config"
 			  )
 				return;
 			//处理名字

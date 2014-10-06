@@ -62,9 +62,11 @@ namespace update
 		{
 			if(!File.Exists(fileName))
 				return "";
+			long filesize=0;
 			try
 			{
 				FileStream file = new FileStream(fileName, FileMode.Open);
+				filesize=file.Length;
 				System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
 				byte[] retVal = md5.ComputeHash(file);
 				file.Close();
@@ -76,10 +78,11 @@ namespace update
 				}
 				return sb.ToString();
 			}
-			catch (Exception ex)
+			catch //(Exception ex)
 			{
-				throw new Exception("GetMD5HashFromFile() fail,error:" + ex.Message);
+				//throw new Exception("GetMD5HashFromFile() fail,error:" + ex.Message);
 			}
+			return filesize.ToString();
 		}
 		#endregion
 		

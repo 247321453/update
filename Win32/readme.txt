@@ -1,4 +1,5 @@
 ﻿客户端使用：
+update-client.bat
 注意：
 1、更新的时候，请不要打开游戏目录。
 2、知道显示更新完成，才能关闭本程序。
@@ -6,7 +7,6 @@
 3、客户端改名：
 例如：
 自动更新.exe
-自动更新.exe.bat
 自动更新.exe.config
 
 设置：
@@ -26,7 +26,7 @@ key="useproxy" value="false"
 key="proxy" value="127.0.0.1:8080"
 
 服务端使用：
-运行update.exe.bat，即可生成对应的文件列表
+运行update-server.bat，即可生成对应的文件列表
 
 update.exe -m "【需要更新的文件夹】"
 【需要更新的文件夹】后最后不能为\

@@ -23,8 +23,11 @@ namespace update
 		int all_num,num;
 		List<fileinfo> errorlist;
 		
-		public Client(){
-			Config.setWorkPath(ConfigurationManager.AppSettings["path"]);
+		public Client(string path,string url){
+			if(string.IsNullOrEmpty(path))
+				Config.setWorkPath(ConfigurationManager.AppSettings["path"],url);
+			else
+				Config.setWorkPath(path,url);
 			
 			errorlist=new List<fileinfo>();
 

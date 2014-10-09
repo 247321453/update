@@ -62,7 +62,7 @@ namespace update
 		public static string GetPath(string name){
 			return Path.Combine(workPath, name.Replace('/',Path.DirectorySeparatorChar));
 		}
-		public static void setWorkPath(string workpath){
+		public static void setWorkPath(string workpath,string url){
 			string tmp;
 			if(string.IsNullOrEmpty(workpath)){
 				//当前目录
@@ -76,7 +76,10 @@ namespace update
 			}
 			else
 				workPath=workpath;
-			url_home = ConfigurationManager.AppSettings["url"];
+			if(string.IsNullOrEmpty(url))
+				url_home = ConfigurationManager.AppSettings["url"];
+			else
+				url_home=url;
 			url_version = url_home+"update/version.txt";
 			url_delete = url_home+"update/delete.txt";
 			url_filelist = url_home+"update/filelist.txt";
@@ -93,9 +96,9 @@ namespace update
 			filelistFile=Path.Combine(infoPath, "filelist.txt");
 			errorFile=Path.Combine(infoPath, "error.txt");
 		}
-		public static void Init(string workpath){
+		public static void Init(string workpath,string url){
 			string tmp;
-			Config.setWorkPath(workpath);
+			Config.setWorkPath(workpath,url);
 			
 			//忽略列表
 			List<string> iglist=new List<string>();

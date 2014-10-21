@@ -56,7 +56,7 @@ namespace update
 		}
 		
 		public static void init(int max){
-			ServicePointManager.DefaultConnectionLimit=max;
+			ServicePointManager.DefaultConnectionLimit=255;
 			MAX_NUM=max;
 		}
 		
